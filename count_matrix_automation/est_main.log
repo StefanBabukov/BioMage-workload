@@ -1,0 +1,3 @@
+/home/ubuntu/dropEst-0.8.6/build/dropest -V -o 1-control -L eiEIBA -f -g /home/ubuntu/refdata-cellranger-GRCh38-3.0.0/genes/genes.gtf -c /home/ubuntu/dropEst-0.8.6/configs/config-desc.xml reads.bam 
+Version: 0.8.6.
+Can't open config file '/home/ubuntu/dropEst-0.8.6/configs/config-desc.xml'
