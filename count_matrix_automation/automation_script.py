@@ -45,4 +45,4 @@ os.rename("/home/ubuntu/cellranger_output/{}/{}.matrices.rds".format(sample_name
 
 # Calling the R script to create CSV files from the .rds outputs
 
-execute_command("Rscipt script.R {}/{}.rds {}/{}_aligned_reads_per_cell.csv".format(output_folder, sample_name, output_folder, sample_name))
+execute_command("Rscipt script_full.R {} {}".format(sample_name, output_folder))
