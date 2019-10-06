@@ -42,3 +42,7 @@ os.rename("/home/ubuntu/cellranger_output/{}/outs/possorted_genome_bam.bam.bai".
 os.rename("/home/ubuntu/cellranger_output/{}/{}.rds".format(sample_name, sample_name), "{}/{}.rds".format(output_folder, sample_name))
 os.rename("/home/ubuntu/cellranger_output/{}/{}.matrices.rds".format(sample_name, sample_name), "{}/{}.matrices.rds".format(output_folder, sample_name))
 
+
+# Calling the R script to create CSV files from the .rds outputs
+
+execute_command("Rscipt script.R {}/{}.rds {}/{}_aligned_reads_per_cell.csv".format(output_folder, sample_name, output_folder, sample_name))
