@@ -1,7 +1,7 @@
 config:
      FastQ_location: /home/ubuntu/test_fastq
      dna_location: /home/ubuntu/refdata-cellranger-GRCh38-3.0.0
-     output_folder:  /home/ubuntu/results
+     output_folder:  /home/ubuntu/new_output_folder
      sample_name: test
-     
+     bucket_name: jeff-new-bucket 
 
