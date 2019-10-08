@@ -37,7 +37,7 @@ def create_bucket(name):
         'LocationConstraint': 'eu-west-1'})
 
 # creating sam files
-execute_command("/home/ubuntu/cellranger-3.1.0/cellranger count --id={} \
+execute_command("cellranger count --id={} \
                    --nosecondary \
                    --transcriptome={} \
                    --fastqs={} \
@@ -57,13 +57,13 @@ execute_command("sudo /home/ubuntu/dropEst-0.8.6/build/dropest -V -o {} -L eiEIB
                 /home/ubuntu/cellranger_output/{}/outs/possorted_genome_bam.bam ".format(sample_name, sample_name), "/home/ubuntu/cellranger_output/{}".format(sample_name))
 
 #moving cellranger and dropest files into the output folder
-'''
+
 os.rename("/home/ubuntu/cellranger_output/{}/outs/filtered_feature_bc_matrix".format(sample_name), "{}/{}_bc_matrix".format(output_folder, sample_name))
 os.rename("/home/ubuntu/cellranger_output/{}/outs/possorted_genome_bam.bam".format(sample_name), "{}/{}.bam".format(output_folder, sample_name))
 os.rename("/home/ubuntu/cellranger_output/{}/outs/possorted_genome_bam.bam.bai".format(sample_name), "{}/{}.bam.bai".format(output_folder, sample_name))
 os.rename("/home/ubuntu/cellranger_output/{}/{}.rds".format(sample_name, sample_name), "{}/{}.rds".format(output_folder, sample_name))
 os.rename("/home/ubuntu/cellranger_output/{}/{}.matrices.rds".format(sample_name, sample_name), "{}/{}.matrices.rds".format(output_folder, sample_name))
-'''
+
 # Calling the R script to create CSV files from the .rds outputs
 
 execute_command("Rscript script_full.R {} {}".format(sample_name, output_folder))
