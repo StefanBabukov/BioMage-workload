@@ -8,7 +8,6 @@ import logging
 from botocore.exceptions import ClientError
 import tarfile
 
-
 with open("configs.yml",'r') as f:
     stream = yaml.load(f)
 
@@ -31,10 +30,18 @@ def check_bucket_existance(bucket_name):
 def make_tarfile(output_file, source_dir):
     with tarfile.open(output_file, "w:gz") as tar:
         tar.add(source_dir, arcname=os.path.basename(source_dir))
+
 def create_bucket(name):
     s3 = boto3.client('s3')
     s3.create_bucket(Bucket = name, CreateBucketConfiguration={
         'LocationConstraint': 'eu-west-1'})
+
+def check_folder_existance(folder):
+    if not Path(folder).is_dir():
+        os.mkdir(folder)
+
+check_folder_existance(output_folder)
+check_folder_existance("/home/ubuntu/cellranger_output")
 
 # creating sam files
 execute_command("cellranger count --id={} \
@@ -44,10 +51,6 @@ execute_command("cellranger count --id={} \
                    --sample={} \
                    --expect-cells=1000"\
                    .format(sample_name, dna_location, FastQ_location, sample_name), "/home/ubuntu/cellranger_output")
-
-check_folder_existance = Path(output_folder)
-if not check_folder_existance.is_dir():
-    os.mkdir(output_folder)
 
 #launching dropest
 
